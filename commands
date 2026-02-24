@@ -1,0 +1,36 @@
+docker run -d \
+-p 8080:8080 \
+-p 50000:50000 \
+-v jenkins_home:/var/jenkins_home \
+--name jenkins \
+jenkins/jenkins:lts-jdk21
+
+http://<EC2-IP>:8080
+
+docker ps -a
+docker images
+docker stop $(docker ps -q -a)
+docker rm $(docker ps -q -a)
+docker rmi -f $(docker images -q)
+docker tag nginx:latest pradeepreddyhub/jenkins_john:bro
+docker login
+docker push pradeepreddyhub/jenkins_john:bro
+
+AWS ECR INTEGRATION (ADVANCED)
+  EC2-ECR-Access-Role
+  AmazonEC2ContainerRegistryFullAccess
+  aws sts get-caller-identity
+  arn:aws:sts::591136340169:assumed-role/EC2-ECR-Access-Role
+  
+  aws ecr get-login-password --region ap-south-1 | \
+docker login --username AWS \
+--password-stdin 591136340169.dkr.ecr.ap-south-1.amazonaws.com
+
+  docker push 591136340169.dkr.ecr.ap-south-1.amazonaws.com/johnjenkins:latest
+
+MAVEN + TOMCAT HELLO-WORLD APP
+
+  docker images
+docker run -d -p 8080:8080 --name hello-war maven:latest
+  docker exec -it hello-war ls /usr/local/tomcat/webapps
+  
