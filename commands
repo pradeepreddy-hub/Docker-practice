@@ -39,4 +39,13 @@ docker-compose up -d
 docker-compose down
 
 docker-compose down -v
+
+docker run -d --name test-bridge nginx
+docker run -d --name test-host --network host nginx
+docker run -d --name test-none --network none nginx
+
+docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
+docker exec -it some-mysql mysql -u root -p
+docker run -d   --name jenkins   -p 8080:8080   -p 50000:50000   -v jenkins:/var/jenkins_home   jenkins/jenkins:lts
+
   
