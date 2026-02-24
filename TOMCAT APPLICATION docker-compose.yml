@@ -1,0 +1,8 @@
+version: "3.9"
+
+services:
+  tomcat:
+    image: pradeepreddyhub/hello-world-war:latest
+    container_name: hello-war
+    ports:
+      - "8080:8080"
