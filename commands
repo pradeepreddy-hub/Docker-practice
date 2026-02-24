@@ -33,4 +33,10 @@ MAVEN + TOMCAT HELLO-WORLD APP
   docker images
 docker run -d -p 8080:8080 --name hello-war maven:latest
   docker exec -it hello-war ls /usr/local/tomcat/webapps
+
+docker-compose up -d
+
+docker-compose down
+
+docker-compose down -v
   
