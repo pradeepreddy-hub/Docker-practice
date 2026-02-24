@@ -1,0 +1,4 @@
+docker volume create tomcat_volume
+docker volume create jenkins_home
+docker inspect tomcat_volume
+docker volume ls
